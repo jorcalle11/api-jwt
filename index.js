@@ -5,7 +5,7 @@ const http = require('http')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const app = express()
-const router = require('./routes')
+const router = require('./src/routes')
 const port = process.env.PORT ||5000
 
 // app setup
