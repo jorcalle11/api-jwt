@@ -5,8 +5,12 @@ const http = require('http')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const app = express()
+const mongoose = require('mongoose')
 const router = require('./src/routes')
 const port = process.env.PORT ||5000
+
+// db connection
+mongoose.connect('mongodb://localhost/apiAuthUsers')
 
 // app setup
 app.use(morgan('dev'))
