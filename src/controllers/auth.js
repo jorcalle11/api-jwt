@@ -1,5 +1,6 @@
 'use strict'
 const User = require('../models/user')
+const encodeToken = require('../utils/token')
 
 class Auth {
   signUp(req,res) {
@@ -16,9 +17,13 @@ class Auth {
       const newUser = new User({email,password})
       newUser.save((err,userSaved) => {
          if (err) return res.send(err)
-         res.send(userSaved)
+         res.send({token: encodeToken(userSaved)})
       })
     })
+  }
+  
+  signIn(req,res) {
+    res.send({token: encodeToken(req.user)})
   }
 }
 
