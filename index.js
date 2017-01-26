@@ -14,6 +14,7 @@ mongoose.connect('mongodb://localhost/apiAuthUsers')
 
 // app setup
 app.use(morgan('dev'))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json({ type: '*/*' }))
 router(app)
 
