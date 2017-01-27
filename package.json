@@ -4,7 +4,8 @@
   "description": "Api with authentication by token",
   "main": "index.js",
   "scripts": {
-    "start": "node_modules/.bin/nodemon index.js"
+    "start": "node index.js",
+    "dev": "node_modules/.bin/nodemon index.js"
   },
   "keywords": [
     "Api",

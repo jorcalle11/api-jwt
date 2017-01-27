@@ -7,10 +7,20 @@ const morgan = require('morgan')
 const app = express()
 const mongoose = require('mongoose')
 const router = require('./src/routes')
-const port = process.env.PORT ||5000
+const { 
+  PORT,
+  URL_DATABASE,
+  NODE_ENV,
+  DATABASE_PROD: { NAME,USER,PASSWORD }
+} = require('./src/config')
 
 // db connection
-mongoose.connect('mongodb://localhost/apiAuthUsers')
+let url = URL_DATABASE
+if (NODE_ENV === 'production' && NAME && USER && PASSWORD) {
+  url = `mongodb://${USER}:${PASSWORD}@ds133249.mlab.com:33249/${NAME}`
+}
+
+mongoose.connect(url)
 
 // app setup
 app.use(morgan('dev'))
@@ -20,5 +30,5 @@ router(app)
 
 // server setup
 const server = http.createServer(app)
-server.listen(port)
-console.log(`Server listenning and running in the port ${port}`)
+server.listen(PORT)
+console.log(`Server listenning and running in the PORT ${PORT}`)
