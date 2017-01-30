@@ -6,8 +6,9 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const app = express()
 const mongoose = require('mongoose')
+const cors = require('cors')
 const router = require('./src/routes')
-const { 
+const {
   PORT,
   URL_DATABASE,
   NODE_ENV,
@@ -24,6 +25,7 @@ mongoose.connect(url)
 
 // app setup
 app.use(morgan('dev'))
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json({ type: '*/*' }))
 router(app)
